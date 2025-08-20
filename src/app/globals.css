@@ -6,21 +6,22 @@
   --color-bg-secondary: #f5f5f5;
   --color-foreground-primary: #000000;
   --color-foreground-secondary: #4b5563;
+  --color-accent: #4f46e5;
 
   /*Dark Mode*/
   --color-bg-primary-dark: #0a0a0a;
   --color-bg-secondary-dark: #171717;
   --color-foreground-primary-dark: #ffffff;
   --color-foreground-secondary-dark: #9ca3af;
+  --color-accent-dark: #4f46e5;
 }
 
-/* create a custom css class for the theme */
-/* @theme inline {
-  --color-bg-primary: var(--color-bg-primary);
-  --color-bg-secondary: var(--color-bg-secondary);
-  --color-foreground-primary: var(--color-foreground-primary);
-  --color-foreground-secondary: var(--color-foreground-secondary);
-} */
+/* Tailwind v4 theme configuration */
+@theme {
+  --color-accent: #4f46e5;
+}
+
+/* TODO: switch to dark mode when dark mode is enabled */
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -28,6 +29,7 @@
     --color-bg-secondary: var(--color-bg-secondary-dark);
     --color-foreground-primary: var(--color-foreground-primary-dark);
     --color-foreground-secondary: var(--color-foreground-secondary-dark);
+    --color-accent: var(--color-accent-dark);
   }
 }
 
@@ -35,4 +37,8 @@ body {
   background: var(--color-bg-primary);
   color: var(--color-foreground-primary);
   font-family: var(--font-general-sans), system-ui, -apple-system, sans-serif;
+}
+
+.logo {
+  font-family: var(--font-poppins), system-ui, -apple-system, sans-serif;
 }

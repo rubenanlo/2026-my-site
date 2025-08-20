@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { generalSans } from "../../lib/fonts";
+import { generalSans, poppins } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "rawDev",
@@ -15,7 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${generalSans.variable} antialiased`}>{children}</body>
+      <body
+        className={`${generalSans.variable} ${poppins.variable} antialiased`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
