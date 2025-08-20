@@ -27,6 +27,10 @@ const gradientVariants: Record<
   },
 };
 
+export default function Background(props: BackgroundProps) {
+  return <BackgroundGlow {...props} />;
+}
+
 const shapes = {
   default:
     "M 1020 320 C 500 0, 460 60, 580 240 C 420 320, 160 200, 240 520, 120 220, 240 420 C 160 420, 80 380, 60 300 C 40 220, 80 140, 160 120 C 240 100, 280 140, 320 120",
@@ -53,10 +57,6 @@ const generateRandomPath = (shape: keyof typeof shapes) => {
     })
     .join("");
 };
-
-export default function Background(props: BackgroundProps) {
-  return <BackgroundGlow {...props} />;
-}
 
 function BackgroundGlow({
   startColor,
