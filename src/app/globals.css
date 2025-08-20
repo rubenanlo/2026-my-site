@@ -14,12 +14,17 @@
   --color-foreground-primary-dark: #ffffff;
   --color-foreground-secondary-dark: #9ca3af;
   --color-accent-dark: #c679c4;
-  --creamsicle-gradient: linear-gradient(180deg, #fff1ac 50%, #ff6f3c 50%);
-  --grapefruit-gradient: linear-gradient(180deg, #ffada0 50%, #96d0ff 50%);
-  --cotton-candy-gradient: linear-gradient(180deg, #96d0ff 50%, #ffc1fd 50%);
-  --sunshine-gradient: linear-gradient(180deg, #5092c7 50%, #ffb005 50%);
-  --twilight-gradient: linear-gradient(180deg, #c679c4 50%, #ffada0 50%);
-  --midnight-gradient: linear-gradient(180deg, #340b05 50%, #5092c7 50%);
+
+  /* Background glow colors - extracted from all gradient presets */
+  --glow-step-1: #fff1ac; /* creamsicle light */
+  --glow-step-2: #ff6f3c; /* creamsicle dark */
+  --glow-step-3: #ffada0; /* grapefruit/twilight coral */
+  --glow-step-4: #96d0ff; /* grapefruit/cotton-candy blue */
+  --glow-step-5: #ffc1fd; /* cotton-candy pink */
+  --glow-step-6: #5092c7; /* sunshine/midnight blue */
+  --glow-step-7: #ffb005; /* sunshine yellow */
+  --glow-step-8: #c679c4; /* twilight purple */
+  --glow-step-9: #340b05; /* midnight dark */
 }
 
 /* Tailwind v4 theme configuration */
