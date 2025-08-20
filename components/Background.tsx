@@ -54,7 +54,9 @@ const generateRandomPath = (shape: keyof typeof shapes) => {
     .join("");
 };
 
-export const Background = BackgroundGlow;
+export default function Background(props: BackgroundProps) {
+  return <BackgroundGlow {...props} />;
+}
 
 function BackgroundGlow({
   startColor,

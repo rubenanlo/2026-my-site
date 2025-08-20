@@ -1,7 +1,7 @@
 import { fadeInBelow } from "@/lib/animations";
 import { motion } from "motion/react";
 
-const Logo = () => {
+export default function Logo() {
   return (
     <motion.div
       {...fadeInBelow({ duration: 0.7, ease: "easeOut" })}
@@ -13,6 +13,4 @@ const Logo = () => {
       <span className="font-extrabold text-2xl tracking-tighter logo">Dev</span>
     </motion.div>
   );
-};
-
-export default Logo;
+}

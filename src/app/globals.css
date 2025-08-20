@@ -30,6 +30,8 @@
 /* Tailwind v4 theme configuration */
 @theme {
   --color-accent: var(--color-accent);
+  --font-poppins: var(--font-poppins);
+  --font-general-sans: var(--font-general-sans);
 }
 
 /* TODO: switch to dark mode when dark mode is enabled */
@@ -47,7 +49,7 @@
 body {
   background: var(--color-bg-primary);
   color: var(--color-foreground-primary);
-  font-family: var(--font-general-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-poppins), system-ui, -apple-system, sans-serif;
 }
 
 .logo {
