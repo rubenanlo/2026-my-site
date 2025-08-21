@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "@/components/Button";
 import { GitHubIcon, LinkedInIcon } from "@/components/SocialIcons";
 import Typewrite from "@/components/Typewrite";
 import { useAnimatedValue } from "@/lib/hooks/use-animated-value";
@@ -17,6 +18,45 @@ type Card = {
   animation?: "value" | "typewriter";
   label?: string;
 };
+
+type Link = {
+  label: string;
+  href: string;
+  target?: string;
+  component: React.ComponentType<{
+    className?: string;
+    children?: React.ReactNode;
+  }>;
+  icon: boolean;
+  text?: string;
+};
+
+const links: Link[] = [
+  {
+    label: "GitHub",
+    target: "_blank",
+    href: "https://github.com/rubenanlo",
+    component: GitHubIcon,
+    icon: true,
+  },
+  {
+    label: "LinkedIn",
+    target: "_blank",
+    href: "https://www.linkedin.com/in/ruben-andino/",
+    component: LinkedInIcon,
+    icon: true,
+  },
+  {
+    label: "Contact me",
+    href: "mailto:randinocv@gmail.com",
+    component: Button as React.ComponentType<{
+      className?: string;
+      children?: React.ReactNode;
+    }>,
+    icon: false,
+    text: "Contact me",
+  },
+];
 
 const cards: Card[] = [
   {
@@ -82,7 +122,7 @@ export default function SectionHero() {
   }, []);
 
   return (
-    <section className="h-screen w-full flex items-center">
+    <section className="h-screen w-full flex items-center snap-start">
       <div className="flex flex-col w-full h-3/4 sm:px-38 sm:py-20 justify-center">
         <div className="flex w-full justify-between gap-x-20">
           <header className="flex flex-col w-full justify-between">
@@ -193,37 +233,24 @@ const Card = ({
 const SectionFooter = ({ style }: { style?: React.CSSProperties }) => {
   return (
     <div className={"flex gap-x-2"} style={style}>
-      <Link href="/">
-        <div className="p-[1px] bg-gradient rounded-md">
-          <LinkedInIcon className="w-[2.89rem] h-[2.89rem]" />
-        </div>
-      </Link>
-      <Link href="/">
-        <div className="p-[1px] bg-gradient rounded-md">
-          <GitHubIcon className="w-[2.89rem] h-[2.89rem]" />
-        </div>
-      </Link>
-      <Link href={`mailto:randinocv@gmail.com`} className="ml-auto">
-        <Button className="cursor-pointer">Contact me</Button>
-      </Link>
+      {links.map(({ component: Component, ...link }, index) => (
+        <Link
+          href={link.href}
+          key={link.label}
+          target={link.target}
+          rel="noopener noreferrer"
+          className={clsx(
+            index === links.length - 1
+              ? "ml-auto"
+              : "p-[1px] bg-gradient rounded-md"
+          )}
+        >
+          {link.icon && <Component className="w-[2.89rem] h-[2.89rem]" />}
+          {!link.icon && link.text && (
+            <Component className="cursor-pointer">{link.text}</Component>
+          )}
+        </Link>
+      ))}
     </div>
-  );
-};
-
-const Button = ({
-  children,
-  className,
-  variant = "default",
-}: {
-  children: React.ReactNode;
-  className?: string;
-  variant?: "default";
-}) => {
-  const variants = {
-    default:
-      "px-10 py-3 bg-foreground-primary rounded-md text-primary font-bold",
-  };
-  return (
-    <button className={clsx(variants[variant], className)}>{children}</button>
   );
 };

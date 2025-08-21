@@ -93,7 +93,7 @@ function BackgroundGlow({
   return (
     <div
       className={clsx(
-        "absolute inset-0 flex items-center justify-center opacity-30 overflow-hidden h-full w-full -z-10"
+        "fixed inset-0 flex items-center justify-center opacity-30 overflow-hidden h-full w-full -z-10"
       )}
     >
       <svg
