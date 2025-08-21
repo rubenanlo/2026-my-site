@@ -42,7 +42,7 @@ const generateRandomPath = (shape: keyof typeof shapes) => {
   const parts = basePath.split(/(?=[A-Z])/);
 
   // Add more pronounced random variation to each number while maintaining the shape
-  const delta = 10;
+  const delta = 3;
 
   return parts
     .map((part) => {
@@ -94,7 +94,7 @@ function BackgroundGlow({
   return (
     <div
       className={clsx(
-        "absolute inset-0 flex items-center justify-center opacity-30 overflow-hidden h-screen w-screen"
+        "absolute inset-0 flex items-center justify-center opacity-30 overflow-hidden h-full w-full"
       )}
     >
       <svg

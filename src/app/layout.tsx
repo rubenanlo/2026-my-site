@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${generalSans.variable} ${poppins.variable} antialiased relative h-screen`}
+        className={`${generalSans.variable} ${poppins.variable} antialiased relative`}
       >
         <Background
           variant="default"

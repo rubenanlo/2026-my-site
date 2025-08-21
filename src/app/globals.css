@@ -32,26 +32,53 @@
   --color-accent: var(--color-accent);
   --font-poppins: var(--font-poppins);
   --font-general-sans: var(--font-general-sans);
+  --color-primary: var(--color-bg-primary);
+  --color-secondary: var(--color-bg-secondary);
+  --color-foreground-primary: var(--color-foreground-primary);
+  --color-foreground-secondary: var(--color-foreground-secondary);
+  --color-accent: var(--color-accent);
 }
 
 /* TODO: switch to dark mode when dark mode is enabled */
 
 @media (prefers-color-scheme: light) {
   :root {
-    --color-bg-primary: var(--color-bg-primary-dark);
-    --color-bg-secondary: var(--color-bg-secondary-dark);
+    --color-primary: var(--color-bg-primary-dark);
+    --color-secondary: var(--color-bg-secondary-dark);
     --color-foreground-primary: var(--color-foreground-primary-dark);
     --color-foreground-secondary: var(--color-foreground-secondary-dark);
     --color-accent: var(--color-accent-dark);
+    --color-bg-primary: var(--color-bg-primary-dark);
+    --color-bg-secondary: var(--color-bg-secondary-dark);
   }
 }
 
 body {
   background: var(--color-bg-primary);
   color: var(--color-foreground-primary);
-  font-family: var(--font-poppins), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-general-sans), system-ui, -apple-system, sans-serif;
 }
 
 .logo {
   font-family: var(--font-poppins), system-ui, -apple-system, sans-serif;
+}
+
+.gradient {
+  background: linear-gradient(
+    135deg,
+    var(--glow-step-1) 0%,
+    var(--glow-step-2) 11.11%,
+    var(--glow-step-3) 22.22%,
+    var(--glow-step-4) 33.33%,
+    var(--glow-step-5) 44.44%,
+    var(--glow-step-6) 55.55%,
+    var(--glow-step-7) 66.66%,
+    var(--glow-step-8) 77.77%,
+    var(--glow-step-9) 88.88%,
+    var(--glow-step-1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
