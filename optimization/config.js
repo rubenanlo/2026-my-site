@@ -10,7 +10,7 @@ const path = require("path");
 
 const dirPath = path.join("public", "assets");
 const excludedImagesPath = path.join("optimization", "excludedImages.json");
-const imagesJsonPath = path.join("public", "images.json");
+const imagesJsonPath = path.join("optimization", "images.json");
 
 const notFormattedFormats = ["svg", "ico"];
 

@@ -1,4 +1,4 @@
-import images from "@/public/images.json";
+import images from "@/optimization/images.json";
 import { clsx } from "clsx";
 import { CldImage } from "next-cloudinary";
 import Image from "next/image";
