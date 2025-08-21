@@ -1,0 +1,79 @@
+[
+  {
+    "alt": "logo_linkedin_1",
+    "format": "webp",
+    "src": "logo_linkedin_1",
+    "width": 50,
+    "height": 50
+  },
+  {
+    "alt": "rounding",
+    "format": "png",
+    "src": "rounding",
+    "width": 614,
+    "height": 771
+  },
+  {
+    "alt": "rounding-1",
+    "format": "png",
+    "src": "rounding-1",
+    "width": 614,
+    "height": 339
+  },
+  {
+    "alt": "benin",
+    "format": "png",
+    "src": "benin",
+    "width": 2822,
+    "height": 1644
+  },
+  {
+    "alt": "warp",
+    "format": "webp",
+    "src": "warp",
+    "width": 2234,
+    "height": 1578
+  },
+  {
+    "alt": "eu_sdr",
+    "format": "png",
+    "src": "eu_sdr",
+    "width": 2822,
+    "height": 1644
+  },
+  {
+    "alt": "my_portfolio",
+    "format": "webp",
+    "src": "my_portfolio",
+    "width": 2800,
+    "height": 1578
+  },
+  {
+    "alt": "rawdev",
+    "format": "webp",
+    "src": "rawdev",
+    "width": 2822,
+    "height": 1644
+  },
+  {
+    "alt": "mitigation_toolkit",
+    "format": "webp",
+    "src": "mitigation_toolkit",
+    "width": 2840,
+    "height": 1644
+  },
+  {
+    "alt": "sdr",
+    "format": "webp",
+    "src": "sdr",
+    "width": 2822,
+    "height": 1644
+  },
+  {
+    "alt": "sdg_tc",
+    "format": "webp",
+    "src": "sdg_tc",
+    "width": 2822,
+    "height": 1644
+  }
+]

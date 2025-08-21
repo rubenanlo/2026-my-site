@@ -6,28 +6,50 @@
   --color-bg-secondary: #f5f5f5;
   --color-foreground-primary: #000000;
   --color-foreground-secondary: #4b5563;
+  --color-accent: #5092c7;
 
   /*Dark Mode*/
   --color-bg-primary-dark: #0a0a0a;
   --color-bg-secondary-dark: #171717;
   --color-foreground-primary-dark: #ffffff;
   --color-foreground-secondary-dark: #9ca3af;
+  --color-accent-dark: #c679c4;
+
+  /* Background glow colors - extracted from all gradient presets */
+  --glow-step-1: #fff1ac; /* creamsicle light */
+  --glow-step-2: #ff6f3c; /* creamsicle dark */
+  --glow-step-3: #ffada0; /* grapefruit/twilight coral */
+  --glow-step-4: #96d0ff; /* grapefruit/cotton-candy blue */
+  --glow-step-5: #ffc1fd; /* cotton-candy pink */
+  --glow-step-6: #5092c7; /* sunshine/midnight blue */
+  --glow-step-7: #ffb005; /* sunshine yellow */
+  --glow-step-8: #c679c4; /* twilight purple */
+  --glow-step-9: #340b05; /* midnight dark */
 }
 
-/* create a custom css class for the theme */
-/* @theme inline {
-  --color-bg-primary: var(--color-bg-primary);
-  --color-bg-secondary: var(--color-bg-secondary);
+/* Tailwind v4 theme configuration */
+@theme {
+  --color-accent: var(--color-accent);
+  --font-poppins: var(--font-poppins);
+  --font-general-sans: var(--font-general-sans);
+  --color-primary: var(--color-bg-primary);
+  --color-secondary: var(--color-bg-secondary);
   --color-foreground-primary: var(--color-foreground-primary);
   --color-foreground-secondary: var(--color-foreground-secondary);
-} */
+  --color-accent: var(--color-accent);
+}
+
+/* TODO: switch to dark mode when dark mode is enabled */
 
 @media (prefers-color-scheme: light) {
   :root {
-    --color-bg-primary: var(--color-bg-primary-dark);
-    --color-bg-secondary: var(--color-bg-secondary-dark);
+    --color-primary: var(--color-bg-primary-dark);
+    --color-secondary: var(--color-bg-secondary-dark);
     --color-foreground-primary: var(--color-foreground-primary-dark);
     --color-foreground-secondary: var(--color-foreground-secondary-dark);
+    --color-accent: var(--color-accent-dark);
+    --color-bg-primary: var(--color-bg-primary-dark);
+    --color-bg-secondary: var(--color-bg-secondary-dark);
   }
 }
 
@@ -35,4 +57,44 @@ body {
   background: var(--color-bg-primary);
   color: var(--color-foreground-primary);
   font-family: var(--font-general-sans), system-ui, -apple-system, sans-serif;
+}
+
+.logo {
+  font-family: var(--font-poppins), system-ui, -apple-system, sans-serif;
+}
+
+.gradient {
+  background: linear-gradient(
+    135deg,
+    var(--glow-step-1) 0%,
+    var(--glow-step-2) 11.11%,
+    var(--glow-step-3) 22.22%,
+    var(--glow-step-4) 33.33%,
+    var(--glow-step-5) 44.44%,
+    var(--glow-step-6) 55.55%,
+    var(--glow-step-7) 66.66%,
+    var(--glow-step-8) 77.77%,
+    var(--glow-step-9) 88.88%,
+    var(--glow-step-1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.bg-gradient {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--glow-step-1) 30%, transparent) 0%,
+    color-mix(in srgb, var(--glow-step-2) 30%, transparent) 11.11%,
+    color-mix(in srgb, var(--glow-step-3) 30%, transparent) 22.22%,
+    color-mix(in srgb, var(--glow-step-4) 30%, transparent) 33.33%,
+    color-mix(in srgb, var(--glow-step-5) 30%, transparent) 44.44%,
+    color-mix(in srgb, var(--glow-step-6) 30%, transparent) 55.55%,
+    color-mix(in srgb, var(--glow-step-7) 30%, transparent) 66.66%,
+    color-mix(in srgb, var(--glow-step-8) 30%, transparent) 77.77%,
+    color-mix(in srgb, var(--glow-step-9) 30%, transparent) 88.88%,
+    color-mix(in srgb, var(--glow-step-1) 30%, transparent) 100%
+  );
 }
