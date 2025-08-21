@@ -82,3 +82,19 @@ body {
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
+
+.bg-gradient {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--glow-step-1) 30%, transparent) 0%,
+    color-mix(in srgb, var(--glow-step-2) 30%, transparent) 11.11%,
+    color-mix(in srgb, var(--glow-step-3) 30%, transparent) 22.22%,
+    color-mix(in srgb, var(--glow-step-4) 30%, transparent) 33.33%,
+    color-mix(in srgb, var(--glow-step-5) 30%, transparent) 44.44%,
+    color-mix(in srgb, var(--glow-step-6) 30%, transparent) 55.55%,
+    color-mix(in srgb, var(--glow-step-7) 30%, transparent) 66.66%,
+    color-mix(in srgb, var(--glow-step-8) 30%, transparent) 77.77%,
+    color-mix(in srgb, var(--glow-step-9) 30%, transparent) 88.88%,
+    color-mix(in srgb, var(--glow-step-1) 30%, transparent) 100%
+  );
+}
