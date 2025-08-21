@@ -32,8 +32,7 @@ export default function Background(props: BackgroundProps) {
 }
 
 const shapes = {
-  default:
-    "M 1020 320 C 500 0, 460 60, 580 240 C 420 320, 160 200, 240 520, 120 220, 240 420 C 160 420, 80 380, 60 300 C 40 220, 80 140, 160 120 C 240 100, 280 140, 320 120",
+  default: "M 500 0 C 100 0, 500 0, 490 140 C 420 320, 160 200, 240 520",
 };
 
 const generateRandomPath = (shape: keyof typeof shapes) => {
@@ -42,7 +41,7 @@ const generateRandomPath = (shape: keyof typeof shapes) => {
   const parts = basePath.split(/(?=[A-Z])/);
 
   // Add more pronounced random variation to each number while maintaining the shape
-  const delta = 3;
+  const delta = 5;
 
   return parts
     .map((part) => {
@@ -94,11 +93,11 @@ function BackgroundGlow({
   return (
     <div
       className={clsx(
-        "absolute inset-0 flex items-center justify-center opacity-30 overflow-hidden h-full w-full"
+        "absolute inset-0 flex items-center justify-center opacity-30 overflow-hidden h-full w-full -z-10"
       )}
     >
       <svg
-        viewBox="0 0 640 430"
+        viewBox="0 0 1200 600"
         className={clsx("w-full h-full", className)}
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid slice"
