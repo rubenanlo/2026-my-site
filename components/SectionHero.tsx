@@ -183,7 +183,7 @@ const Card = ({
       {image && (
         <OImage
           original={image}
-          className="absolute w-32 z-10 right-10 top-5 opacity-50 rotate-5 rounded-sm"
+          className="absolute w-32 z-10 right-10 top-6 opacity-50 rotate-5 rounded-sm"
         />
       )}
     </div>
