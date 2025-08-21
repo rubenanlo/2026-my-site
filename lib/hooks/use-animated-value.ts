@@ -53,7 +53,7 @@ const formatNumber = (
 
 interface AnimatedValueProps {
   from?: number;
-  to?: number | string;
+  to?: number;
   decimals?: number;
   formatThousands?: boolean;
   animations?: Record<string, any>;
@@ -95,8 +95,20 @@ export function useAnimatedValue<
     [userAnimations]
   );
 
+  // Only proceed if 'to' is a valid number
+  if (typeof to !== "number") {
+    // Return a static motion value with the 'from' value
+    const staticValue = useMotionValue(from);
+    if (measureWidth) {
+      return {
+        value: staticValue,
+        width: 0,
+      } as ReturnType<T, M>;
+    }
+    return staticValue as ReturnType<T, M>;
+  }
+
   const numberFrom = useMotionValue(from);
-  const isNumericTo = !isNaN(parseFloat(to as string)) && isFinite(Number(to));
   const [width, setWidth] = useState<number>(0);
 
   const animatedNumber = useTransform(numberFrom, (value: number) => {
@@ -111,16 +123,12 @@ export function useAnimatedValue<
   });
 
   useEffect(() => {
-    if (isNumericTo) {
-      const controls = animate(numberFrom, Number(to), animations);
-      return () => controls.stop();
-    } else {
-      numberFrom.set(from); // Reset to the initial value if non-numeric
-    }
-  }, [from, to, numberFrom, animations, isNumericTo]); // Include isNumericTo in the dependency array
+    const controls = animate(numberFrom, to, animations);
+    return () => controls.stop();
+  }, [from, to, numberFrom, animations]);
 
   useEffect(() => {
-    if (measureWidth && isNumericTo && typeof window !== "undefined") {
+    if (measureWidth && typeof window !== "undefined") {
       // Create a temporary element to measure text width
       const measureTextWidth = () => {
         const el = document.createElement("span");
@@ -131,8 +139,8 @@ export function useAnimatedValue<
 
         // Format the value the same way as in the real element
         const formattedValue = formatThousands
-          ? new Intl.NumberFormat("en-US").format(Number(to))
-          : Number(to).toFixed(decimals);
+          ? new Intl.NumberFormat("en-US").format(to)
+          : to.toFixed(decimals);
 
         el.textContent = formattedValue;
 
@@ -145,7 +153,7 @@ export function useAnimatedValue<
 
       setWidth(measureTextWidth());
     }
-  }, [to, measureWidth, className, formatThousands, decimals, isNumericTo]);
+  }, [to, measureWidth, className, formatThousands, decimals]);
 
   if (measureWidth) {
     return {

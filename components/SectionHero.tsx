@@ -1,31 +1,32 @@
 "use client";
 
+import Typewrite from "@/components/Typewrite";
 import { useAnimatedValue } from "@/lib/hooks/use-animated-value";
-import { Typewriter } from "motion-plus/react";
-import { delay, motion, wrap } from "motion/react";
+import { motion } from "motion/react";
 import Link from "next/link";
-import { useState } from "react";
 
 type Card = {
   title: string;
-  value?: number;
+  value: number | string[] | string;
   duration?: number;
-  text?: string[];
+  animation?: "value" | "typewriter";
 };
 
 const cards: Card[] = [
   {
     title: "Projects",
     value: 10,
+    animation: "value",
   },
   {
     title: "Experience",
     value: 15,
+    animation: "value",
     duration: 1.6,
   },
   {
     title: "Expertise",
-    text: [
+    value: [
       "React",
       "Next.js",
       "Tailwind CSS",
@@ -46,6 +47,7 @@ const cards: Card[] = [
       "motion",
       "Notion",
     ],
+    animation: "typewriter",
   },
 ];
 
@@ -81,16 +83,17 @@ const Card = ({
   value,
   title,
   duration,
-  text,
+  animation,
 }: {
-  value?: number;
+  value: number | string[] | string;
   title: string;
   duration?: number;
-  text?: string[];
+  animation?: "value" | "typewriter";
 }) => {
+  // Only use animated value for numeric values
   const animatedValue = useAnimatedValue({
     from: 0,
-    to: value,
+    to: typeof value === "number" ? value : 0,
     animations: {
       duration,
     },
@@ -103,21 +106,26 @@ const Card = ({
           <h3 className="text-2xl font-general-sans tracking-tight text-foreground-primary w-full">
             {title}
           </h3>
-          {value && (
+          {animation === "value" && (
             <div className="flex items-center gap-x-2 font-bold text-foreground-secondary">
               <motion.p className="text-4xl">{animatedValue}</motion.p>
               <span className="text-4xl">+</span>
             </div>
           )}
 
-          {text && (
+          {animation === "typewriter" && (
             <Typewrite
-              text={text}
+              text={value as string[]}
               whenToStart={1}
               speed={300}
               className="text-4xl font-bold text-foreground-secondary gradient"
               backspaceFactor={0.1}
             />
+          )}
+          {!animation && (
+            <div className="flex items-center gap-x-2 font-bold text-foreground-secondary">
+              <p className="text-4xl">{value}</p>
+            </div>
           )}
         </div>
       </div>
@@ -129,44 +137,6 @@ const Links = () => {
   return (
     <div className="flex items-center gap-x-2">
       <Link href="/">h</Link>
-    </div>
-  );
-};
-
-const Typewrite = ({
-  text,
-  whenToStart,
-  speed,
-  className,
-  backspaceFactor,
-  showCursor,
-}: {
-  text: string[];
-  whenToStart: number;
-  speed: number;
-  className: string;
-  backspaceFactor: number;
-  showCursor?: boolean;
-}) => {
-  const [index, setIndex] = useState(0);
-
-  return (
-    <div>
-      <Typewriter
-        as="span"
-        delay={whenToStart} // Initial delay before typing starts (1 second)
-        speed={speed} // Typing speed in milliseconds per character
-        onComplete={() => {
-          // This fires when typing is complete
-          // delay() takes seconds, not milliseconds
-          delay(() => setIndex(wrap(0, text.length, index + 1)), 2); // Wait 2 seconds before starting to backspace/erase
-        }}
-        className={className}
-        backspaceFactor={backspaceFactor} // Controls backspace speed (0.1 = very fast backspacing)
-        cursorStyle={{ visibility: showCursor ? "visible" : "hidden" }}
-      >
-        {`${text[index]} `}
-      </Typewriter>
     </div>
   );
 };
