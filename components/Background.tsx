@@ -1,5 +1,3 @@
-"use client";
-
 import clsx from "clsx";
 import { motion } from "motion/react";
 
@@ -35,13 +33,21 @@ const shapes = {
   default: "M 500 0 C 100 0, 500 0, 490 140 C 420 320, 160 200, 240 520",
 };
 
-const generateRandomPath = (shape: keyof typeof shapes) => {
+const generateRandomPath = (shape: keyof typeof shapes, seed?: number) => {
   const basePath = shapes[shape];
   // Split the path into its components
   const parts = basePath.split(/(?=[A-Z])/);
 
   // Add more pronounced random variation to each number while maintaining the shape
-  const delta = 5;
+  const delta = 4;
+
+  // Use a seeded random number generator for consistency
+  // Use a fixed seed if none provided to ensure server-client consistency
+  let randomSeed = seed || 12345;
+  const seededRandom = () => {
+    randomSeed = (randomSeed * 9301 + 49297) % 233280;
+    return randomSeed / 233280;
+  };
 
   return parts
     .map((part) => {
@@ -49,7 +55,7 @@ const generateRandomPath = (shape: keyof typeof shapes) => {
         return part.replace(/[0-9]+(\.[0-9]+)?/g, (match) => {
           const num = parseFloat(match);
           const variance = num * delta; // Increased to 25% variance for more pronounced effect
-          return (num + (Math.random() * variance * 2 - variance)).toFixed(1);
+          return (num + (seededRandom() * variance * 2 - variance)).toFixed(1);
         });
       }
       return part;
@@ -93,7 +99,7 @@ function BackgroundGlow({
   return (
     <div
       className={clsx(
-        "absolute inset-0 flex items-center justify-center opacity-30 overflow-hidden h-full w-full -z-10"
+        "fixed inset-0 flex items-center justify-center opacity-30 overflow-hidden h-full w-full -z-10"
       )}
     >
       <svg
@@ -136,9 +142,9 @@ function BackgroundGlow({
               ? {
                   d: [
                     shapes[shape],
-                    generateRandomPath(shape),
-                    generateRandomPath(shape),
-                    generateRandomPath(shape),
+                    generateRandomPath(shape, 1),
+                    generateRandomPath(shape, 2),
+                    generateRandomPath(shape, 3),
                     shapes[shape],
                   ],
                 }

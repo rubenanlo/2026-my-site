@@ -1,3 +1,5 @@
+"use client";
+
 import {
   animate,
   MotionValue,
@@ -139,7 +141,9 @@ export function useAnimatedValue<
 
         // Format the value the same way as in the real element
         const formattedValue = formatThousands
-          ? new Intl.NumberFormat("en-US").format(to)
+          ? new Intl.NumberFormat("en-US", {
+              maximumFractionDigits: decimals,
+            }).format(to)
           : to.toFixed(decimals);
 
         el.textContent = formattedValue;

@@ -1,7 +1,9 @@
 "use client";
 
-import { GitHubIcon, LinkedInIcon } from "@/components/SocialIcons";
+import Button from "@/components/Button";
+import { GitHubIcon, LinkedInIcon } from "@/components/Icons";
 import Typewrite from "@/components/Typewrite";
+import { blurIn } from "@/lib/animations";
 import { useAnimatedValue } from "@/lib/hooks/use-animated-value";
 import OImage from "@/optimization/components/OImage";
 import clsx from "clsx";
@@ -17,6 +19,45 @@ type Card = {
   animation?: "value" | "typewriter";
   label?: string;
 };
+
+type Link = {
+  label: string;
+  href: string;
+  target?: string;
+  component: React.ComponentType<{
+    className?: string;
+    children?: React.ReactNode;
+  }>;
+  icon: boolean;
+  text?: string;
+};
+
+const links: Link[] = [
+  {
+    label: "GitHub",
+    target: "_blank",
+    href: "https://github.com/rubenanlo",
+    component: GitHubIcon,
+    icon: true,
+  },
+  {
+    label: "LinkedIn",
+    target: "_blank",
+    href: "https://www.linkedin.com/in/ruben-andino/",
+    component: LinkedInIcon,
+    icon: true,
+  },
+  {
+    label: "Contact me",
+    href: "mailto:randinocv@gmail.com",
+    component: Button as React.ComponentType<{
+      className?: string;
+      children?: React.ReactNode;
+    }>,
+    icon: false,
+    text: "Contact me",
+  },
+];
 
 const cards: Card[] = [
   {
@@ -62,27 +103,39 @@ const cards: Card[] = [
 export default function SectionHero() {
   const textRef = useRef<HTMLParagraphElement>(null);
   const [textWidth, setTextWidth] = useState<number>(0);
+  const [isClient, setIsClient] = useState(false);
 
   const measureTextWidth = () => {
-    if (textRef.current) {
+    if (textRef.current && isClient) {
       const width = textRef.current.getBoundingClientRect().width;
       setTextWidth(width);
-      console.log("Text width:", width);
     }
   };
 
   useEffect(() => {
-    measureTextWidth();
-
-    // Optional: Re-measure on window resize
-    const handleResize = () => measureTextWidth();
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
+    setIsClient(true);
   }, []);
 
+  useEffect(() => {
+    if (isClient) {
+      // Use requestAnimationFrame to ensure DOM is ready
+      requestAnimationFrame(() => {
+        measureTextWidth();
+      });
+
+      // Optional: Re-measure on window resize
+      const handleResize = () => measureTextWidth();
+      window.addEventListener("resize", handleResize);
+
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, [isClient]);
+
   return (
-    <section className="h-screen w-full flex items-center">
+    <motion.section
+      {...blurIn({ delay: 0.2 })}
+      className="h-screen w-full flex items-center"
+    >
       <div className="flex flex-col w-full h-3/4 sm:px-38 sm:py-20 justify-center">
         <div className="flex w-full justify-between gap-x-20">
           <header className="flex flex-col w-full justify-between">
@@ -117,7 +170,7 @@ export default function SectionHero() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
@@ -183,7 +236,7 @@ const Card = ({
       {image && (
         <OImage
           original={image}
-          className="absolute w-32 z-10 right-10 top-5 opacity-50 rotate-5 rounded-sm"
+          className="absolute w-32 z-10 right-10 top-6 opacity-50 rotate-5 rounded-sm"
         />
       )}
     </div>
@@ -193,37 +246,37 @@ const Card = ({
 const SectionFooter = ({ style }: { style?: React.CSSProperties }) => {
   return (
     <div className={"flex gap-x-2"} style={style}>
-      <Link href="/">
-        <div className="p-[1px] bg-gradient rounded-md">
-          <LinkedInIcon className="w-[2.89rem] h-[2.89rem]" />
-        </div>
-      </Link>
-      <Link href="/">
-        <div className="p-[1px] bg-gradient rounded-md">
-          <GitHubIcon className="w-[2.89rem] h-[2.89rem]" />
-        </div>
-      </Link>
-      <Link href={`mailto:randinocv@gmail.com`} className="ml-auto">
-        <Button className="cursor-pointer">Contact me</Button>
-      </Link>
-    </div>
-  );
-};
+      {links.map(({ component: Component, ...link }) => {
+        // Handle button separately to avoid nesting interactive elements
+        if (!link.icon && link.text) {
+          return (
+            <Link
+              href={link.href}
+              key={link.label}
+              target={link.target}
+              rel="noopener noreferrer"
+              className={clsx(
+                "ml-auto px-10 py-3 bg-foreground-primary rounded-md text-primary font-bold cursor-pointer"
+              )}
+            >
+              {link.text}
+            </Link>
+          );
+        }
 
-const Button = ({
-  children,
-  className,
-  variant = "default",
-}: {
-  children: React.ReactNode;
-  className?: string;
-  variant?: "default";
-}) => {
-  const variants = {
-    default:
-      "px-10 py-3 bg-foreground-primary rounded-md text-primary font-bold",
-  };
-  return (
-    <button className={clsx(variants[variant], className)}>{children}</button>
+        // Handle icons normally
+        return (
+          <Link
+            href={link.href}
+            key={link.label}
+            target={link.target}
+            rel="noopener noreferrer"
+            className={clsx("p-[1px] bg-gradient rounded-md")}
+          >
+            <Component className="w-[2.89rem] h-[2.89rem]" />
+          </Link>
+        );
+      })}
+    </div>
   );
 };
