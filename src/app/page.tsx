@@ -2,9 +2,11 @@
 
 import Background from "@/components/Background";
 import BlogPosts from "@/components/BlogPosts";
+import Loading from "@/components/modal/Loading";
 import Projects from "@/components/Projects";
 import SectionHero from "@/components/SectionHero";
 import Skills from "@/components/Skills";
+import { useIsMounted } from "@/lib/hooks/use-is-mounted";
 import { useSectionTransforms } from "@/lib/hooks/use-section-transform";
 import { motion, useScroll } from "motion/react";
 import { useRef } from "react";
@@ -61,6 +63,10 @@ export default function Home() {
     const section = sections[index];
     const transforms = sectionTransforms[index];
 
+    const isMounted = useIsMounted();
+
+    if (!isMounted) return <Loading />;
+
     return (
       <motion.div
         style={{
@@ -94,9 +100,6 @@ export default function Home() {
             <Component />
           </SectionWrapper>
         ))}
-
-        {/* Spacer to create scroll distance for animations */}
-        <div className="h-[200vh]" />
       </main>
     </>
   );
