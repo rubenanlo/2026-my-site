@@ -42,8 +42,10 @@
   --color-red: var(--glow-step-3);
   --color-blue: var(--glow-step-4);
   --color-pink: var(--glow-step-5);
-  --color-purple: var(--glow-step-6);
-  --color-green: var(--glow-step-7);
+  --color-dark-blue: var(--glow-step-6);
+  --color-sunshine-yellow: var(--glow-step-7);
+  --color-dark-pink: var(--glow-step-8);
+  --color-midnight-red: var(--glow-step-9);
 }
 
 /* TODO: switch to dark mode when dark mode is enabled */
@@ -111,9 +113,9 @@ body {
 }
 
 .skills-section {
-  @apply bg-gradient-to-br from-green to-orange;
+  @apply bg-gradient-to-br from-sunshine-yellow to-orange;
 }
 
 .blog-posts-section {
-  @apply bg-gradient-to-br from-pink to-purple;
+  @apply bg-gradient-to-br from-pink to-dark-blue;
 }
