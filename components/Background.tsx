@@ -1,5 +1,3 @@
-"use client";
-
 import clsx from "clsx";
 import { motion } from "motion/react";
 
@@ -41,7 +39,7 @@ const generateRandomPath = (shape: keyof typeof shapes, seed?: number) => {
   const parts = basePath.split(/(?=[A-Z])/);
 
   // Add more pronounced random variation to each number while maintaining the shape
-  const delta = 5;
+  const delta = 4;
 
   // Use a seeded random number generator for consistency
   // Use a fixed seed if none provided to ensure server-client consistency

@@ -3,6 +3,7 @@
 import Button from "@/components/Button";
 import { GitHubIcon, LinkedInIcon } from "@/components/SocialIcons";
 import Typewrite from "@/components/Typewrite";
+import { blurIn } from "@/lib/animations";
 import { useAnimatedValue } from "@/lib/hooks/use-animated-value";
 import OImage from "@/optimization/components/OImage";
 import clsx from "clsx";
@@ -108,7 +109,6 @@ export default function SectionHero() {
     if (textRef.current && isClient) {
       const width = textRef.current.getBoundingClientRect().width;
       setTextWidth(width);
-      console.log("Text width:", width);
     }
   };
 
@@ -132,7 +132,10 @@ export default function SectionHero() {
   }, [isClient]);
 
   return (
-    <section className="h-screen w-full flex items-center">
+    <motion.section
+      {...blurIn({ delay: 0.2 })}
+      className="h-screen w-full flex items-center"
+    >
       <div className="flex flex-col w-full h-3/4 sm:px-38 sm:py-20 justify-center">
         <div className="flex w-full justify-between gap-x-20">
           <header className="flex flex-col w-full justify-between">
@@ -167,7 +170,7 @@ export default function SectionHero() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

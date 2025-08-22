@@ -13,7 +13,7 @@ const sections = [
     id: "hero",
     title: "Hero",
     component: SectionHero,
-    sticky: false, // Hero section doesn't need sticky behavior
+    sticky: true, // Hero section doesn't need sticky behavior
   },
   {
     id: "projects",
@@ -41,26 +41,29 @@ const useSectionTransforms = (
   totalSections: number
 ) => {
   const transforms = sections.map((_, index) => {
-    // Skip hero section (index 0) as it doesn't need transforms
+    // Hero section (index 0) gets fade-out effect
     if (index === 0) {
-      return { y: 0, scale: 1, opacity: 1 };
+      return {
+        y: 0,
+        scale: 1,
+        opacity: useTransform(scrollYProgress, [0, 0.2], [1, 0]),
+      };
     }
 
     // Calculate scroll ranges for each section with gaps
     const sectionIndex = index - 1; // Adjust for hero section
     const totalAnimatedSections = totalSections - 1; // Exclude hero
 
-    // Create gaps between sections (each section uses 60% of available space, 40% is gap)
-    const sectionDuration = 0.6; // How much of the scroll range each section uses
-    const gapDuration = 0.4; // Gap between sections
-    const totalDuration = sectionDuration + gapDuration;
+    // Distribute sections evenly across scroll progress
+    const sectionSize = 1 / totalAnimatedSections; // Each section gets equal space
+    const animationDuration = sectionSize * 0.8; // 80% of section space for animation
+    const gapDuration = sectionSize * 0.2; // 20% gap between sections
 
     // Start and end points for this section's animation
-    const startProgress =
-      (sectionIndex * totalDuration) / totalAnimatedSections;
-    const endProgress = startProgress + sectionDuration / totalAnimatedSections;
-    const midProgress =
-      startProgress + (sectionDuration * 0.75) / totalAnimatedSections;
+    const startProgress = sectionIndex * sectionSize;
+    const endProgress = Math.min(startProgress + animationDuration, 1.0);
+
+    const midProgress = startProgress + animationDuration * 0.75;
 
     return {
       y: useTransform(scrollYProgress, [startProgress, endProgress], [100, 0]),
@@ -104,19 +107,19 @@ export default function Home() {
     const section = sections[index];
     const transforms = sectionTransforms[index];
 
-    // Hero section doesn't need motion wrapper
-    if (!section.sticky) {
-      return <>{children}</>;
-    }
-
     return (
       <motion.div
         style={{
           y: transforms.y,
           scale: transforms.scale,
           opacity: transforms.opacity,
+          top: section.sticky ? `${index * 10}px` : undefined,
         }}
-        className={className || `sticky top-${index * 10} z-${10 + index * 10}`}
+        className={
+          section.sticky
+            ? className || `sticky z-${10 + index * 10}`
+            : className || "relative"
+        }
       >
         {children}
       </motion.div>
@@ -138,8 +141,8 @@ export default function Home() {
           </SectionWrapper>
         ))}
 
-        {/* Spacer to create scroll distance */}
-        {/* <div className="h-[300vh]" /> */}
+        {/* Spacer to create scroll distance for animations */}
+        <div className="h-[200vh]" />
       </main>
     </>
   );

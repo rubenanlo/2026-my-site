@@ -1,5 +1,3 @@
-"use client";
-
 import { Typewriter } from "motion-plus/react";
 import { delay, wrap } from "motion/react";
 import { useState } from "react";

@@ -12,6 +12,7 @@ type AnimationProps = {
   duration?: number;
   ease?: Easing | Easing[];
   delay?: number;
+  filter?: string;
 };
 
 type Props = {
@@ -31,6 +32,22 @@ export const fadeInBelow = ({
     transition: {
       duration,
       ease: ease || "easeOut",
+    },
+  };
+};
+
+export const blurIn = ({
+  duration = 0.3,
+  ease,
+  delay = 0.2,
+}: AnimationProps): Props => {
+  return {
+    initial: { opacity: 0, filter: "blur(10px)" },
+    animate: { opacity: 1, filter: "blur(0px)" },
+    transition: {
+      duration,
+      ease: ease || "easeOut",
+      delay,
     },
   };
 };
