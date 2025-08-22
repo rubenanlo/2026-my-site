@@ -13,10 +13,11 @@ type AnimationProps = {
   ease?: Easing | Easing[];
   delay?: number;
   filter?: string;
+  condition?: boolean;
 };
 
 type Props = {
-  initial: AnimationProps;
+  initial?: AnimationProps;
   animate: AnimationProps;
   exit?: AnimationProps;
   transition?: Transition;
@@ -44,6 +45,35 @@ export const blurIn = ({
   return {
     initial: { opacity: 0, filter: "blur(10px)" },
     animate: { opacity: 1, filter: "blur(0px)" },
+    transition: {
+      duration,
+      ease: ease || "easeOut",
+      delay,
+    },
+  };
+};
+
+export const fadeInLeft = ({
+  duration = 0.2,
+  ease,
+  delay = 0.2,
+}: AnimationProps): Props => {
+  return {
+    initial: { opacity: 0, x: -20 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -20 },
+    transition: { duration, ease: ease || "easeOut", delay },
+  };
+};
+
+export const moveFromLeft = ({
+  duration = 0.2,
+  ease,
+  delay = 0.2,
+  condition = false,
+}: AnimationProps): Props => {
+  return {
+    animate: { x: condition ? 10 : 0 },
     transition: {
       duration,
       ease: ease || "easeOut",

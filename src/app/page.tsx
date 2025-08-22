@@ -38,6 +38,9 @@ const sections = [
   },
 ];
 
+type SectionsBehavior = "stack" | "fixed";
+const sectionsBehavior: SectionsBehavior = "stack";
+
 export default function Home() {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -73,7 +76,13 @@ export default function Home() {
           y: transforms.y,
           scale: transforms.scale,
           opacity: transforms.opacity,
-          top: section.sticky ? `${index * 10}px` : undefined,
+          visibility: transforms.visibility,
+          top:
+            section.sticky && sectionsBehavior === "stack"
+              ? `${index * 10}px`
+              : section.sticky
+              ? 0
+              : undefined,
         }}
         className={
           section.sticky
@@ -97,7 +106,9 @@ export default function Home() {
       <main ref={containerRef} className="relative">
         {sections.map(({ id, component: Component }, index) => (
           <SectionWrapper key={id} index={index}>
-            <Component />
+            <Component
+              topOffset={sectionsBehavior === "stack" ? index * 10 : 0}
+            />
           </SectionWrapper>
         ))}
       </main>

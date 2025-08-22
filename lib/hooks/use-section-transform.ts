@@ -17,6 +17,11 @@ export const useSectionTransforms = (
         y: 0,
         scale: 1,
         opacity: useTransform(scrollYProgress, [0, 0.2], [1, 0]),
+        visibility: useTransform(
+          scrollYProgress,
+          [0, 0.2],
+          ["visible", "hidden"]
+        ),
       };
     }
 
@@ -47,6 +52,7 @@ export const useSectionTransforms = (
         [startProgress, midProgress, endProgress],
         [0, 0.5, 1]
       ),
+      visibility: useTransform(scrollYProgress, [0, 1], ["visible", "visible"]), // Other sections remain visible
     };
   });
 

@@ -75,5 +75,12 @@
     "src": "sdg_tc",
     "width": 2822,
     "height": 1644
+  },
+  {
+    "alt": "projects",
+    "format": "webp",
+    "src": "projects",
+    "width": 2368,
+    "height": 1212
   }
 ]

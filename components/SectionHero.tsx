@@ -1,7 +1,7 @@
 "use client";
 
 import Button from "@/components/Button";
-import { GitHubIcon, LinkedInIcon } from "@/components/SocialIcons";
+import { GitHubIcon, LinkedInIcon } from "@/components/Icons";
 import Typewrite from "@/components/Typewrite";
 import { blurIn } from "@/lib/animations";
 import { useAnimatedValue } from "@/lib/hooks/use-animated-value";

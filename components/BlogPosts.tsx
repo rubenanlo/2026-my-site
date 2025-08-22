@@ -1,6 +1,12 @@
-export default function BlogPosts() {
+import LayoutSection from "./layout/LayoutSection";
+
+interface BlogPostsProps {
+  topOffset?: number;
+}
+
+export default function BlogPosts({ topOffset = 0 }: BlogPostsProps) {
   return (
-    <section className="h-screen bg-gradient-to-br from-purple-50 to-pink-100 dark:from-gray-800 dark:to-purple-900 rounded-t-3xl shadow-2xl border border-gray-200 dark:border-gray-700 flex items-center justify-center">
+    <LayoutSection id="blog-posts-section" topOffset={topOffset}>
       <div className="text-center">
         <h2 className="text-6xl font-bold text-gray-900 dark:text-white mb-4">
           Blog Posts
@@ -9,6 +15,6 @@ export default function BlogPosts() {
           Thoughts, insights, and technical articles
         </p>
       </div>
-    </section>
+    </LayoutSection>
   );
 }
