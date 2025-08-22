@@ -243,24 +243,37 @@ const Card = ({
 const SectionFooter = ({ style }: { style?: React.CSSProperties }) => {
   return (
     <div className={"flex gap-x-2"} style={style}>
-      {links.map(({ component: Component, ...link }, index) => (
-        <Link
-          href={link.href}
-          key={link.label}
-          target={link.target}
-          rel="noopener noreferrer"
-          className={clsx(
-            index === links.length - 1
-              ? "ml-auto"
-              : "p-[1px] bg-gradient rounded-md"
-          )}
-        >
-          {link.icon && <Component className="w-[2.89rem] h-[2.89rem]" />}
-          {!link.icon && link.text && (
-            <Component className="cursor-pointer">{link.text}</Component>
-          )}
-        </Link>
-      ))}
+      {links.map(({ component: Component, ...link }) => {
+        // Handle button separately to avoid nesting interactive elements
+        if (!link.icon && link.text) {
+          return (
+            <Link
+              href={link.href}
+              key={link.label}
+              target={link.target}
+              rel="noopener noreferrer"
+              className={clsx(
+                "ml-auto px-10 py-3 bg-foreground-primary rounded-md text-primary font-bold cursor-pointer"
+              )}
+            >
+              {link.text}
+            </Link>
+          );
+        }
+
+        // Handle icons normally
+        return (
+          <Link
+            href={link.href}
+            key={link.label}
+            target={link.target}
+            rel="noopener noreferrer"
+            className={clsx("p-[1px] bg-gradient rounded-md")}
+          >
+            <Component className="w-[2.89rem] h-[2.89rem]" />
+          </Link>
+        );
+      })}
     </div>
   );
 };
