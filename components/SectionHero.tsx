@@ -122,7 +122,7 @@ export default function SectionHero() {
   }, []);
 
   return (
-    <section className="h-screen w-full flex items-center snap-start">
+    <section className="h-screen w-full flex items-center">
       <div className="flex flex-col w-full h-3/4 sm:px-38 sm:py-20 justify-center">
         <div className="flex w-full justify-between gap-x-20">
           <header className="flex flex-col w-full justify-between">

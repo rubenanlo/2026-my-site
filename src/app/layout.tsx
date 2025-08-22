@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import Background from "@/components/Background";
 import { generalSans, poppins } from "@/lib/fonts";
 
 export const metadata: Metadata = {
@@ -19,12 +18,6 @@ export default function RootLayout({
       <body
         className={`${generalSans.variable} ${poppins.variable} antialiased relative`}
       >
-        <Background
-          variant="default"
-          animate={true}
-          useAllSteps={true}
-          shape="default"
-        />
         {children}
       </body>
     </html>

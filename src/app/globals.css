@@ -37,6 +37,13 @@
   --color-foreground-primary: var(--color-foreground-primary);
   --color-foreground-secondary: var(--color-foreground-secondary);
   --color-accent: var(--color-accent);
+  --color-yellow: var(--glow-step-1);
+  --color-orange: var(--glow-step-2);
+  --color-red: var(--glow-step-3);
+  --color-blue: var(--glow-step-4);
+  --color-pink: var(--glow-step-5);
+  --color-purple: var(--glow-step-6);
+  --color-green: var(--glow-step-7);
 }
 
 /* TODO: switch to dark mode when dark mode is enabled */
