@@ -102,9 +102,10 @@ const cards: Card[] = [
 export default function SectionHero() {
   const textRef = useRef<HTMLParagraphElement>(null);
   const [textWidth, setTextWidth] = useState<number>(0);
+  const [isClient, setIsClient] = useState(false);
 
   const measureTextWidth = () => {
-    if (textRef.current) {
+    if (textRef.current && isClient) {
       const width = textRef.current.getBoundingClientRect().width;
       setTextWidth(width);
       console.log("Text width:", width);
@@ -112,14 +113,23 @@ export default function SectionHero() {
   };
 
   useEffect(() => {
-    measureTextWidth();
-
-    // Optional: Re-measure on window resize
-    const handleResize = () => measureTextWidth();
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
+    setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      // Use requestAnimationFrame to ensure DOM is ready
+      requestAnimationFrame(() => {
+        measureTextWidth();
+      });
+
+      // Optional: Re-measure on window resize
+      const handleResize = () => measureTextWidth();
+      window.addEventListener("resize", handleResize);
+
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, [isClient]);
 
   return (
     <section className="h-screen w-full flex items-center">
