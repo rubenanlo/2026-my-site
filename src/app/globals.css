@@ -109,13 +109,13 @@ body {
 }
 
 .projects-section {
-  @apply bg-gradient-to-br from-blue to-blue;
+  @apply bg-gradient-to-b from-blue via-blue via-65% to-pink;
 }
 
 .skills-section {
-  @apply bg-gradient-to-br from-sunshine-yellow to-orange;
+  @apply bg-gradient-to-b from-yellow via-yellow via-65% to-orange;
 }
 
 .blog-posts-section {
-  @apply bg-gradient-to-br from-pink to-dark-blue;
+  @apply bg-gradient-to-b from-dark-pink via-dark-pink via-65% to-dark-blue;
 }

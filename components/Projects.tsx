@@ -66,35 +66,38 @@ export default function Projects({ topOffset = 0 }: ProjectsProps) {
             />
           ))}
         </div>
-        <motion.ul className="flex-2 h-full flex flex-col justify-between">
-          {projects.map(({ title, tag, url }, index) => (
-            <motion.li className="relative flex items-end" key={title}>
-              <motion.div
-                onHoverStart={() => setIndexHovered(index)}
-                onHoverEnd={() => setIndexHovered(undefined)}
-                id="project"
-                className="flex flex-col gap-y-2 w-full border-b"
-              >
-                <Link href={url} target="_blank">
-                  <p className="text-xl">{tag}</p>
-                  <div className="flex items-center justify-between">
-                    <motion.h3
-                      {...moveFromLeft({ condition: indexHovered === index })}
-                      className="text-5xl mb-4"
-                    >
-                      {title}
-                    </motion.h3>
-                    {indexHovered === index && (
-                      <motion.div {...fadeInLeft({ delay: 0.2 })}>
-                        <ArrowRight className=" top-12 h-10 w-10" />
-                      </motion.div>
-                    )}
-                  </div>
-                </Link>
-              </motion.div>
-              <AnimatePresence></AnimatePresence>
-            </motion.li>
-          ))}
+        <motion.ul className="flex-2 h-full flex flex-col justify-between gap-y-8">
+          <p className="text-center text-5xl">Relevant projects</p>
+          <div className="flex flex-col gap-y-8">
+            {projects.map(({ title, tag, url }, index) => (
+              <motion.li className="relative flex items-end" key={title}>
+                <motion.div
+                  onHoverStart={() => setIndexHovered(index)}
+                  onHoverEnd={() => setIndexHovered(undefined)}
+                  id="project"
+                  className="flex flex-col gap-y-2 w-full border-b"
+                >
+                  <Link href={url} target="_blank">
+                    <p className="text-md">{tag}</p>
+                    <div className="flex items-center justify-between">
+                      <motion.h3
+                        {...moveFromLeft({ condition: indexHovered === index })}
+                        className="text-4xl mb-4"
+                      >
+                        {title}
+                      </motion.h3>
+                      {indexHovered === index && (
+                        <motion.div {...fadeInLeft({ delay: 0.2 })}>
+                          <ArrowRight className=" top-12 h-10 w-10" />
+                        </motion.div>
+                      )}
+                    </div>
+                  </Link>
+                </motion.div>
+                <AnimatePresence></AnimatePresence>
+              </motion.li>
+            ))}
+          </div>
         </motion.ul>
       </div>
     </LayoutSection>
