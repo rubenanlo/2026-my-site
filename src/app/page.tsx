@@ -103,7 +103,18 @@ export default function Home() {
         useAllSteps={true}
         shape="default"
       />
-      <main ref={containerRef} className="relative">
+      <main className="relative lg:hidden">
+        <div className="flex flex-col items-center justify-center h-screen max-w-2xl mx-auto gap-y-10">
+          <h1 className="text-2xl font-bold text-center">
+            Website currently for desktop version only.
+          </h1>
+          <p className="text-center">
+            Working hard to bring you a mobile version of my website. In the
+            meantime, please use a desktop device to view my portfolio.
+          </p>
+        </div>
+      </main>
+      <main ref={containerRef} className="relative hidden lg:block">
         {sections.map(({ id, component: Component }, index) => (
           <SectionWrapper key={id} index={index}>
             <Component
