@@ -81,3 +81,23 @@ export const moveFromLeft = ({
     },
   };
 };
+
+export const springIn = ({
+  duration = 0.3,
+  ease = "easeOut",
+  delay = 0.2,
+}: AnimationProps): Props => {
+  return {
+    initial: { scale: 0.8, opacity: 0, y: 20 },
+    animate: { scale: 1, opacity: 1, y: 0 },
+    exit: { scale: 0.8, opacity: 0, y: 20 },
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 25,
+      duration: duration,
+      ease: ease,
+      delay: delay,
+    },
+  };
+};
