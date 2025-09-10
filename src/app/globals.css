@@ -25,6 +25,15 @@
   --glow-step-7: #ffb005; /* sunshine yellow */
   --glow-step-8: #c679c4; /* twilight purple */
   --glow-step-9: #340b05; /* midnight dark */
+
+  /* Opacity colors */
+  --opacity-step-1: #bcdaf4; /* opacity blue */
+  --opacity-step-2: #b8c6e4; /* opacity dark blue */
+  --opacity-step-3: #debee2; /* opacity pink */
+  --opacity-step-4: #fff3d1; /* opacity yellow */
+  --opacity-step-5: #ffb8a1; /* opacity orange */
+  --opacity-step-6: #fddefc; /* opacity light pink */
+  --opacity-step-7: #a08989; /* opacity dark red */
 }
 
 /* Tailwind v4 theme configuration */
@@ -46,6 +55,13 @@
   --color-sunshine-yellow: var(--glow-step-7);
   --color-dark-pink: var(--glow-step-8);
   --color-midnight-red: var(--glow-step-9);
+  --color-opacity-blue: var(--opacity-step-1);
+  --color-opacity-dark-blue: var(--opacity-step-2);
+  --color-opacity-pink: var(--opacity-step-3);
+  --color-opacity-yellow: var(--opacity-step-4);
+  --color-opacity-orange: var(--opacity-step-5);
+  --color-opacity-light-pink: var(--opacity-step-6);
+  --color-opacity-dark-red: var(--opacity-step-7);
 }
 
 /* TODO: switch to dark mode when dark mode is enabled */
@@ -89,7 +105,7 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: transparent;
+  /* color: transparent; */
 }
 
 .bg-gradient {
@@ -118,4 +134,16 @@ body {
 
 .blog-posts-section {
   @apply bg-gradient-to-b from-dark-pink via-dark-pink via-65% to-dark-blue;
+}
+
+.moonlight-gradient {
+  @apply bg-gradient-to-b from-opacity-blue via-opacity-dark-blue via-55% to-opacity-pink;
+}
+
+.sun-gradient {
+  @apply bg-gradient-to-b from-opacity-yellow via-opacity-orange via-55% to-opacity-dark-blue;
+}
+
+.red-gradient {
+  @apply bg-gradient-to-b from-opacity-light-pink via-opacity-pink via-55% to-opacity-dark-red;
 }

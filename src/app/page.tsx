@@ -41,6 +41,17 @@ const sections = [
 type SectionsBehavior = "stack" | "fixed";
 const sectionsBehavior: SectionsBehavior = "stack";
 
+// Helper function to get proper Tailwind z-index classes
+const getZIndexClass = (index: number) => {
+  const zIndexMap = {
+    0: "z-10", // Hero
+    1: "z-20", // Projects
+    2: "z-30", // Skills
+    3: "z-40", // Blog
+  };
+  return zIndexMap[index as keyof typeof zIndexMap] || "z-10";
+};
+
 export default function Home() {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -86,7 +97,7 @@ export default function Home() {
         }}
         className={
           section.sticky
-            ? className || `sticky z-${10 + index * 10}`
+            ? className || `sticky ${getZIndexClass(index)}`
             : className || "relative"
         }
       >

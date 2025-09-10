@@ -46,12 +46,12 @@ export default function Skills({ topOffset = 0 }: SkillsProps) {
     <LayoutSection id="skills-section" topOffset={topOffset}>
       <div className="flex w-full sm:px-38 sm:py-20 gap-x-20">
         <div className="flex flex-col gap-y-4 justify-center flex-1">
-          <p
+          <h2
             className="font-bold text-gray-600 text-5xl self-start"
             ref={viewRef}
           >
             Skills and Tools
-          </p>
+          </h2>
           <p className="text-gray-600 text-lg self-start">
             I've acquired a wide range of skills and technical knowledge
             front-end development, back-end development and soft skills.
