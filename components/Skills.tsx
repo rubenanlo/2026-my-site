@@ -9,22 +9,26 @@ interface SkillsProps {
 }
 
 const skillsData: Skill[] = [
-  { name: "React", importance: 8, color: "bg-white/20" },
-  { name: "TypeScript", importance: 4, color: "bg-white/20" },
-  { name: "Next.js", importance: 8, color: "bg-white/20" },
-  { name: "Node.js", importance: 8, color: "bg-white/20" },
-  { name: "JavaScript", importance: 9, color: "bg-white/20" },
-  { name: "Python", importance: 3, color: "bg-white/20" },
-  { name: "TailwindCSS", importance: 8, color: "bg-white/20" },
-  { name: "AWS", importance: 7, color: "bg-white/20" },
-  { name: "PostgreSQL", importance: 2, color: "bg-white/20" },
-  { name: "MongoDB", importance: 6, color: "bg-white/20" },
-  { name: "Notion", importance: 5, color: "bg-white/20" },
-  { name: "Project management", importance: 12, color: "bg-white/20" },
-  { name: "Automation", importance: 12, color: "bg-white/20" },
-  { name: "Motion", importance: 6, color: "bg-white/20" },
-  { name: "Business Acumen", importance: 12, color: "bg-white/20" },
-  { name: "Data Analysis", importance: 6, color: "bg-white/20" },
+  { name: "React", importance: 8, color: "sun-gradient" },
+  { name: "TypeScript", importance: 4, color: "dark-pink-blue-gradient" },
+  { name: "Next.js", importance: 8, color: "sun-gradient" },
+  { name: "Node.js", importance: 8, color: "dark-pink-blue-gradient" },
+  { name: "JavaScript", importance: 9, color: "dark-pink-blue-gradient" },
+  { name: "Python", importance: 3, color: "dark-pink-blue-gradient" },
+  { name: "TailwindCSS", importance: 8, color: "moonlight-gradient" },
+  { name: "AWS", importance: 7, color: "yellow-orange-gradient" },
+  { name: "PostgreSQL", importance: 2, color: "yellow-orange-gradient" },
+  { name: "MongoDB", importance: 6, color: "yellow-orange-gradient" },
+  { name: "Notion", importance: 5, color: "moonlight-gradient" },
+  {
+    name: "Project management",
+    importance: 12,
+    color: "red-gradient",
+  },
+  { name: "Automation", importance: 12, color: "red-gradient" },
+  { name: "Motion", importance: 6, color: "moonlight-gradient" },
+  { name: "Business Acumen", importance: 12, color: "red-gradient" },
+  { name: "Data Analysis", importance: 6, color: "red-gradient" },
 ];
 
 export default function Skills({ topOffset = 0 }: SkillsProps) {

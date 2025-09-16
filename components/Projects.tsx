@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
+import { ActionLink } from "./ActionLink";
 
 interface ProjectsProps {
   topOffset?: number;
@@ -50,7 +51,7 @@ export default function Projects({ topOffset = 0 }: ProjectsProps) {
 
   return (
     <LayoutSection topOffset={topOffset} id="projects-section">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-x-10 w-full h-3/4 sm:px-38 sm:py-20">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-x-10 w-full sm:px-38 sm:py-20 h-full">
         <div className="relative h-full flex-1 flex items-center">
           {images.map((image, index) => (
             <OImage
@@ -66,7 +67,7 @@ export default function Projects({ topOffset = 0 }: ProjectsProps) {
             />
           ))}
         </div>
-        <motion.ul className="flex-2 h-full flex flex-col justify-between gap-y-12">
+        <motion.div className="flex-2 h-full flex flex-col justify-between gap-y-14">
           <div className="flex flex-col gap-y-4">
             <h2 className="font-bold text-gray-600 text-5xl">
               Relevant projects
@@ -75,8 +76,7 @@ export default function Projects({ topOffset = 0 }: ProjectsProps) {
               Here you have a small sample of the projects I've worked on.
             </p>
           </div>
-
-          <div className="flex flex-col gap-y-8">
+          <ul className="flex flex-col gap-y-8">
             {projects.map(({ title, tag, url }, index) => (
               <motion.li className="relative flex items-end" key={title}>
                 <motion.div
@@ -104,23 +104,12 @@ export default function Projects({ topOffset = 0 }: ProjectsProps) {
                 </motion.div>
               </motion.li>
             ))}
-          </div>
-          <div className="bg-gradient w-fit  rounded-2xl">
-            <div
-              className=" bg-white/10 py-3 px-6  rounded-2xl backdrop-blur-2xl shadow-lg
-            "
-            >
-              <Link
-                href="https://ruben-andino.rawdev.me/projects"
-                target="_blank"
-              >
-                <p className="text-lg relative font-semibold">
-                  Check all my projects here →
-                </p>
-              </Link>
-            </div>
-          </div>
-        </motion.ul>
+          </ul>
+          <ActionLink
+            href="https://ruben-andino.rawdev.me/projects"
+            text="Check all my projects here →"
+          />
+        </motion.div>
       </div>
     </LayoutSection>
   );

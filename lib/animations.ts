@@ -101,3 +101,20 @@ export const springIn = ({
     },
   };
 };
+
+export const increaseWidth = ({
+  duration = 0.2,
+  ease = "easeOut",
+  delay = 0.2,
+}: AnimationProps): Props => {
+  return {
+    initial: { width: "0%" },
+    animate: { width: "100%" },
+    transition: {
+      type: "spring",
+      duration,
+      ease: ease,
+      delay,
+    },
+  };
+};

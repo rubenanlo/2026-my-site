@@ -124,15 +124,15 @@ body {
   );
 }
 
-.projects-section {
+.blue-pink-gradient {
   @apply bg-gradient-to-b from-blue via-blue via-65% to-pink;
 }
 
-.skills-section {
+.yellow-orange-gradient {
   @apply bg-gradient-to-b from-yellow via-yellow via-65% to-orange;
 }
 
-.blog-posts-section {
+.dark-pink-blue-gradient {
   @apply bg-gradient-to-b from-dark-pink via-dark-pink via-65% to-dark-blue;
 }
 

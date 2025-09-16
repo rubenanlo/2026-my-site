@@ -13,8 +13,8 @@ export default function LayoutSection({
     <div
       id={id}
       className={clsx(
-        id,
-        "rounded-t-3xl shadow-2xl flex items-center justify-center"
+        "bg-primary",
+        "rounded-t-3xl shadow-2xl flex items-center justify-center border border-foreground-primary/50"
       )}
       style={{
         height: `calc(100svh - ${topOffset}px)`,
