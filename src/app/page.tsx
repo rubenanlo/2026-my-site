@@ -1,5 +1,6 @@
 "use client";
 
+import { ActionLink } from "@/components/ActionLink";
 import Background from "@/components/Background";
 import BlogPosts from "@/components/BlogPosts";
 import Loading from "@/components/modal/Loading";
@@ -8,6 +9,7 @@ import SectionHero from "@/components/SectionHero";
 import Skills from "@/components/Skills";
 import { useIsMounted } from "@/lib/hooks/use-is-mounted";
 import { useSectionTransforms } from "@/lib/hooks/use-section-transform";
+import { links } from "@/lib/links";
 import { motion, useScroll } from "motion/react";
 import { useRef } from "react";
 
@@ -115,14 +117,30 @@ export default function Home() {
         shape="default"
       />
       <main className="relative lg:hidden">
-        <div className="flex flex-col items-center justify-center h-screen max-w-2xl mx-auto gap-y-10">
+        <div className="flex flex-col items-center justify-center h-screen max-w-2xl mx-auto gap-y-14">
           <h1 className="text-2xl font-bold text-center">
             Website currently for desktop version only.
           </h1>
           <p className="text-center">
             Working hard to bring you a mobile version of my website. In the
-            meantime, please use a desktop device to view my portfolio.
+            meantime, check my other links.
           </p>
+          <ul className="flex gap-x-4">
+            {links.slice(0, 2).map((link) => (
+              <li key={link.label}>
+                <link.component className="w-6 h-6" />
+              </li>
+            ))}
+            <li>
+              <ActionLink
+                href="https://ruben-andino.rawdev.me"
+                text="The other site →"
+              />
+            </li>
+          </ul>
+          <div className="text-center bg-foreground-primary rounded-md px-4 py-2 text-primary font-bold">
+            {links[2].text}
+          </div>
         </div>
       </main>
       <main ref={containerRef} className="relative hidden lg:block">
